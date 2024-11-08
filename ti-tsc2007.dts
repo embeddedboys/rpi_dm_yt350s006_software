@@ -1,0 +1,40 @@
+// Device tree overlay for I2C connected TI TSC2207 touch controller
+/dts-v1/;
+/plugin/;
+
+/ {
+	compatible = "brcm,bcm2835";
+
+	fragment@0 {
+		target = <&gpio>;
+		__overlay__ {
+			ti_pins: ti_pins {
+				brcm,pins = <4>; // interrupt
+				brcm,function = <0>; // in
+				brcm,pull = <2>; // pull-up
+			};
+		};
+	};
+
+	fragment@1 {
+		target = <&i2c1>;
+		__overlay__ {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			status = "okay";
+
+			tsc2007: tsc2007@49 {
+				compatible = "ti,tsc2007";
+				reg = <0x49>;
+				pinctrl-names = "default";
+				pinctrl-0 = <&ti_pins>;
+				interrupt-parent = <&gpio>;
+				interrupts = <4 0x2>; // IRQ_TYPE_EDGE_RISING
+				gpios = <&gpio 4 1>; // GPIO_ACTIVE_LOW
+				ti,x-plate-ohms = <257>;
+				ti,fuzzx = <320>;
+				ti,fuzzy = <480>;
+			};
+		};
+	};
+};

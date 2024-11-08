@@ -1,0 +1,19 @@
+<labwc_config>
+  <libinput>
+    <device category="TSC2007 Touchscreen">
+      <naturalScroll></naturalScroll>
+      <leftHanded></leftHanded>
+      <pointerSpeed></pointerSpeed>
+      <accelProfile></accelProfile>
+      <tap>yes</tap>
+      <tapButtonMap></tapButtonMap>
+      <tapAndDrag></tapAndDrag>
+      <dragLock></dragLock>
+      <middleEmulation></middleEmulation>
+      <disableWhileTyping></disableWhileTyping>
+      <clickMethod></clickMethod>
+      <sendEventsMode></sendEventsMode>
+      <calibrationMatrix>-0.00266 1.113747 -0.028613 -1.163198 0.001762 1.061980</calibrationMatrix>
+    </device>
+  </libinput>
+</labwc_config>
