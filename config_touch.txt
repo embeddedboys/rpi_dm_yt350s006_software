@@ -1,0 +1,1 @@
+dtoverlay=goodix-gt911

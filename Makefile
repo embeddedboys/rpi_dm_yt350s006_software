@@ -5,6 +5,7 @@ all:
 	./mipi-dbi-cmd rpi-dm-hp35006.bin rpi-dm-hp35006.txt
 	dtc -@ -Hepapr -I dts -O dtb -o goodix-gt911.dtbo goodix-gt911.dts
 	dtc -@ -Hepapr -I dts -O dtb -o ti-tsc2007.dtbo ti-tsc2007.dts
+	dtc -@ -Hepapr -I dts -O dtb -o nsiway-ns2009.dtbo nsiway-ns2009.dts
 
 install:
 	@echo "Installing..."

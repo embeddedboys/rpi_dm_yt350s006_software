@@ -1,4 +1,4 @@
-// Device tree overlay for I2C connected TI TSC2007 touch controller
+// Device tree overlay for I2C connected Nisway NS2009 touch controller
 /dts-v1/;
 /plugin/;
 
@@ -23,9 +23,9 @@
 			#size-cells = <0>;
 			status = "okay";
 
-			tsc2007: tsc2007@49 {
+			ns2009: ns2009@48 {
 				compatible = "ti,tsc2007";
-				reg = <0x49>;
+				reg = <0x48>;
 				pinctrl-names = "default";
 				pinctrl-0 = <&ti_pins>;
 				interrupt-parent = <&gpio>;
