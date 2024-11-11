@@ -1,4 +1,4 @@
-// Device tree overlay for I2C connected Goodix gt9271 multiple touch controller
+// Device tree overlay for I2C connected Goodix gt911 multiple touch controller
 /dts-v1/;
 /plugin/;
 
@@ -29,9 +29,9 @@
 				pinctrl-names = "default";
 				pinctrl-0 = <&goodix_pins>;
 				interrupt-parent = <&gpio>;
-				interrupts = <23 2>; // high-to-low edge triggered
-				irq-gpios = <&gpio 23 0>; // Pin7 on GPIO header
-				reset-gpios = <&gpio 18 0>; // Pin11 on GPIO header
+				interrupts = <23 2>; // IRQ_TYPE_EDGE_FALLING
+				irq-gpios = <&gpio 23 0>; // GPIO_ACTIVE_LOW
+				reset-gpios = <&gpio 18 0>; // GPIO_ACTIVE_LOW
 				touchscreen-swapped-x-y;
 				touchscreen-inverted-x;
 			};
