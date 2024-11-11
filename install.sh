@@ -13,7 +13,7 @@ if [ "${RPI_DM_TEST}" = "1" ]; then
     REBOOT_CMD="echo 测试环境不需要重启"
 else
     TARGET_CONFIG="/boot/firmware/config.txt"
-    DTBO_INSTALL_DIR="/boot/overlays"
+    DTBO_INSTALL_DIR="/boot/firmware/overlays"
     FIRMWARE_INSTALL_DIR="/lib/firmware"
     REBOOT_CMD="sudo reboot"
 fi
