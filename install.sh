@@ -248,7 +248,7 @@ function default_install()
     msg_info "执行默认安装流程中。。。"
     ask_disp_model
     ask_touch_model
-    # ask_code_server
+    ask_code_server
 
     print_user_select
 
