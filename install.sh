@@ -193,10 +193,9 @@ function install()
         sudo cp rpi-dm-hp35006.bin ${FIRMWARE_INSTALL_DIR}
         ;;
     "CL35BC219-40A")
-        msg_error "暂不支持CL35BC219-40A显示面板"
-        exit 1
         # modified_string=$(echo "$original_string" | sed 's/\(compatible=\)[^\\]*\\0/\1rpi-dm-cl35bc219-40a\\0/')
         sed -i 's/\(compatible=\)[^\\]*\\0/\1rpi-dm-cl35bc219-40a\\0/' config_disp.txt
+        sudo cp rpi-dm-cl35bc219-40a.bin ${FIRMWARE_INSTALL_DIR}
         ;;
     esac
     # echo "$modified_string"
@@ -210,9 +209,8 @@ function install()
         sudo install -m 0755 goodix-gt911.dtbo ${DTBO_INSTALL_DIR}
         ;;
     "FT6336")
-        msg_error "暂不支持FT6336触摸屏"
-        exit 1
-        sudo install -m 0755 goodix-gt911.dtbo ${DTBO_INSTALL_DIR}
+        sed -i 's/dtoverlay=[^ ]*/dtoverlay=focaltech-ft6236/' config_touch.txt
+        sudo install -m 0755 focaltech-ft6236.dtbo ${DTBO_INSTALL_DIR}
         ;;
     "NS2009")
         sed -i 's/\(dtoverlay=\).*/\1nsiway-ns2009/' config_touch.txt

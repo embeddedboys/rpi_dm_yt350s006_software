@@ -1,0 +1,40 @@
+// Device tree overlay for I2C connected Focaltech FT6236 multiple touch controller
+/dts-v1/;
+/plugin/;
+
+/ {
+	compatible = "brcm,bcm2835";
+
+	fragment@0 {
+		target = <&gpio>;
+		__overlay__ {
+			focaltech_pins: focaltech_pins {
+				brcm,pins = <23 18>; // interrupt and reset
+				brcm,function = <0 1>; // in
+				brcm,pull = <2 2>; // pull-up
+			};
+		};
+	};
+
+	fragment@1 {
+		target = <&i2c1>;
+		__overlay__ {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			status = "okay";
+
+			ft6236: ft6236@38 {
+				compatible = "focaltech,ft6236";
+				reg = <0x38>;
+				pinctrl-names = "default";
+				pinctrl-0 = <&focaltech_pins>;
+				interrupt-parent = <&gpio>;
+				interrupts = <23 2>; // IRQ_TYPE_EDGE_FALLING
+				irq-gpios = <&gpio 23 0>; // Pin23 on GPIO header
+				reset-gpios = <&gpio 18 0>; // Pin18 on GPIO header
+				touchscreen-swapped-x-y;
+				touchscreen-inverted-x;
+			};
+		};
+	};
+};
