@@ -30,8 +30,7 @@
 				pinctrl-0 = <&focaltech_pins>;
 				interrupt-parent = <&gpio>;
 				interrupts = <23 2>; // IRQ_TYPE_EDGE_FALLING
-				irq-gpios = <&gpio 23 0>; // Pin23 on GPIO header
-				reset-gpios = <&gpio 18 0>; // Pin18 on GPIO header
+				reset-gpios = <&gpio 18 1>; // GPIO_ACTIVE_LOW
 				touchscreen-swapped-x-y;
 				touchscreen-inverted-x;
 			};

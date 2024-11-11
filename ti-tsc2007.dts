@@ -29,7 +29,7 @@
 				pinctrl-names = "default";
 				pinctrl-0 = <&ti_pins>;
 				interrupt-parent = <&gpio>;
-				interrupts = <4 0x2>; // IRQ_TYPE_EDGE_RISING
+				interrupts = <4 0x2>; // IRQ_TYPE_EDGE_FALLING
 				gpios = <&gpio 4 1>; // GPIO_ACTIVE_LOW
 				ti,x-plate-ohms = <257>;
 				ti,fuzzx = <320>;
