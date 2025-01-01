@@ -9,7 +9,7 @@
 		target = <&gpio>;
 		__overlay__ {
 			focaltech_pins: focaltech_pins {
-				brcm,pins = <23 18>; // interrupt and reset
+				brcm,pins = <23 24>; // interrupt and reset
 				brcm,function = <0 1>; // in
 				brcm,pull = <2 2>; // pull-up
 			};
@@ -30,7 +30,7 @@
 				pinctrl-0 = <&focaltech_pins>;
 				interrupt-parent = <&gpio>;
 				interrupts = <23 2>; // IRQ_TYPE_EDGE_FALLING
-				reset-gpios = <&gpio 18 1>; // GPIO_ACTIVE_LOW
+				reset-gpios = <&gpio 24 1>; // GPIO_ACTIVE_LOW
 				touchscreen-size-x = < 320 >;
 				touchscreen-size-y = < 480 >;
 				touchscreen-swapped-x-y;

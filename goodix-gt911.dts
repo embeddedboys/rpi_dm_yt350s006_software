@@ -9,7 +9,7 @@
 		target = <&gpio>;
 		__overlay__ {
 			goodix_pins: goodix_pins {
-				brcm,pins = <23 18>; // interrupt and reset
+				brcm,pins = <23 24>; // interrupt and reset
 				brcm,function = <0 0>; // in
 				brcm,pull = <2 2>; // pull-up
 			};
@@ -31,7 +31,7 @@
 				interrupt-parent = <&gpio>;
 				interrupts = <23 2>; // IRQ_TYPE_EDGE_FALLING
 				irq-gpios = <&gpio 23 0>; // GPIO_ACTIVE_LOW
-				reset-gpios = <&gpio 18 0>; // GPIO_ACTIVE_LOW
+				reset-gpios = <&gpio 24 0>; // GPIO_ACTIVE_LOW
 				touchscreen-swapped-x-y;
 				touchscreen-inverted-x;
 			};
