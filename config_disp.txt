@@ -2,5 +2,3 @@ dtoverlay=mipi-dbi-spi,spi0-0,speed=100000000
 dtparam=compatible=rpi-dm-yt350s006\0panel-mipi-dbi-spi
 dtparam=width=480,height=320,width-mm=55,height-mm=84
 dtparam=reset-gpio=25,dc-gpio=22
-dtparam=backlight-gpio=18
-dtparam=backlight-pwm

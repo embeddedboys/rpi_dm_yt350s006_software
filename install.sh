@@ -26,6 +26,7 @@ ORGNAZATION="embeddedboys"
 REPO_NAME="rpi_dm_yt350s006_software"
 
 WORK_DIR="${HOME}/${REPO_NAME}"
+MODEL=$(tr -d '\0' < /proc/device-tree/model)
 
 C_BLACK="\e[30;1m"
 C_RED="\e[31;1m"
@@ -201,6 +202,14 @@ function install()
     # echo "$modified_string"
     # cat config_disp.txt
     sudo sh -c "cat config_disp.txt >> ${TARGET_CONFIG}"
+
+    if echo "$MODEL" | grep -q "Raspberry Pi 5"; then
+	sudo sh -c  "echo 'dtparam=backlight-pwm=1,backlight-pwm-chan=2,backlight-pwm-gpio=18' >> ${TARGET_CONFIG}"
+    else
+	sudo sh -c "echo 'dtparam=backlight-gpio=18' >> ${TARGET_CONFIG}"
+	sudo sh -c "echo 'dtparam=backlight-pwm' >> ${TARGET_CONFIG}"
+    fi
+
 
     # 处理触摸屏驱动
     case ${TOUCH_MODEL} in
