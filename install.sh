@@ -1,6 +1,6 @@
 #!/bin/bash
 
-valid_disp_models=("YT350S006" "HP35006" "CL35BC219-40A")
+valid_disp_models=("YT350S006" "HP35006" "CL35BC219-40A" "CL35BC1017-40A")
 valid_touch_models=("GT911" "FT6336" "NS2009" "TSC2007")
 valid_code_servers=("gitee" "github")
 
@@ -24,7 +24,7 @@ if [ "${RPI_DM_TEST}" = "1" ]; then
     REBOOT_CMD="echo 测试环境不需要重启"
     WORK_DIR="${PWD}"
     mkdir -p "${TEST_DIR}"
-    chmod 777 -R "${TEST_DIR}"
+    sudo chmod 777 -R "${TEST_DIR}"
     echo "test" > ${TARGET_CONFIG}
 else
     TARGET_CONFIG="/boot/firmware/config.txt"
@@ -82,6 +82,7 @@ function ask_disp_model()
     msg_normal "\t 0. YT350S006"
     msg_normal "\t 1. HP35006"
     msg_normal "\t 2. CL35BC219-40A"
+    msg_normal "\t 3. CL35BC1017-40A"
     msg_tip "检查您购买的屏幕FPC丝印"
     read -p "请输入选择 [0]: " model
     model=${model:-0}
@@ -202,6 +203,11 @@ function install()
         # modified_string=$(echo "$original_string" | sed 's/\(compatible=\)[^\\]*\\0/\1rpi-dm-cl35bc219-40a\\0/')
         sed -i 's/\(compatible=\)[^\\]*\\0/\1rpi-dm-cl35bc219-40a\\0/' config_disp.txt
         sudo cp rpi-dm-cl35bc219-40a.bin ${FIRMWARE_INSTALL_DIR}
+        ;;
+    "CL35BC1017-40A")
+        # modified_string=$(echo "$original_string" | sed 's/\(compatible=\)[^\\]*\\0/\1rpi-dm-cl35bc1017-40a\\0/')
+        sed -i 's/\(compatible=\)[^\\]*\\0/\1rpi-dm-cl35bc1017-40a\\0/' config_disp.txt
+        sudo cp rpi-dm-cl35bc1017-40a.bin ${FIRMWARE_INSTALL_DIR}
         ;;
     esac
     # echo "$modified_string"
