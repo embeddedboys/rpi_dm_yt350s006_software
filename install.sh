@@ -4,20 +4,6 @@ valid_disp_models=("YT350S006" "HP35006" "CL35BC219-40A")
 valid_touch_models=("GT911" "FT6336" "NS2009" "TSC2007")
 valid_code_servers=("gitee" "github")
 
-# 如果是测试环境
-if [ "${RPI_DM_TEST}" = "1" ]; then
-    echo "当前正处于测试环境"
-    TARGET_CONFIG="/tmp/config.txt"
-    DTBO_INSTALL_DIR="/tmp"
-    FIRMWARE_INSTALL_DIR="/tmp"
-    REBOOT_CMD="echo 测试环境不需要重启"
-else
-    TARGET_CONFIG="/boot/firmware/config.txt"
-    DTBO_INSTALL_DIR="/boot/firmware/overlays"
-    FIRMWARE_INSTALL_DIR="/lib/firmware"
-    REBOOT_CMD="sudo reboot"
-fi
-
 # 一些默认值
 DISP_MODEL="YT350S006"
 TOUCH_MODEL="GT911"
@@ -27,6 +13,25 @@ REPO_NAME="rpi_dm_yt350s006_software"
 
 WORK_DIR="${HOME}/${REPO_NAME}"
 MODEL=$(tr -d '\0' < /proc/device-tree/model)
+
+# 如果是测试环境
+if [ "${RPI_DM_TEST}" = "1" ]; then
+    echo "当前正处于测试环境"
+    TEST_DIR="/tmp/rpi_dm_yt350s006_test"
+    TARGET_CONFIG="${TEST_DIR}/config.txt"
+    DTBO_INSTALL_DIR="${TEST_DIR}"
+    FIRMWARE_INSTALL_DIR="${TEST_DIR}"
+    REBOOT_CMD="echo 测试环境不需要重启"
+    WORK_DIR="${PWD}"
+    mkdir -p "${TEST_DIR}"
+    chmod 777 -R "${TEST_DIR}"
+    echo "test" > ${TARGET_CONFIG}
+else
+    TARGET_CONFIG="/boot/firmware/config.txt"
+    DTBO_INSTALL_DIR="/boot/firmware/overlays"
+    FIRMWARE_INSTALL_DIR="/lib/firmware"
+    REBOOT_CMD="sudo reboot"
+fi
 
 C_BLACK="\e[30;1m"
 C_RED="\e[31;1m"
